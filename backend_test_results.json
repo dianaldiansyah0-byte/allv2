@@ -1,0 +1,290 @@
+{
+  "total": 47,
+  "passed": 46,
+  "failed": 1,
+  "tests": [
+    {
+      "name": "Stripe route /payments/status/cs_test_ removed",
+      "passed": true,
+      "details": "404 as expected",
+      "critical": false
+    },
+    {
+      "name": "Stripe route /payments/stripe/webhook removed",
+      "passed": true,
+      "details": "404 as expected",
+      "critical": false
+    },
+    {
+      "name": "Stripe route /payments/create-checkout-session removed",
+      "passed": true,
+      "details": "404 as expected",
+      "critical": false
+    },
+    {
+      "name": "GET /payments/config returns Midtrans production config",
+      "passed": true,
+      "details": "provider=midtrans, enabled=true, mode=production, clientKey=Mid-client-R7G7...",
+      "critical": false
+    },
+    {
+      "name": "Create test order for Midtrans checkout",
+      "passed": true,
+      "details": "Invoice: INV1837255361",
+      "critical": false
+    },
+    {
+      "name": "POST /payments/checkout returns token for valid invoice",
+      "passed": true,
+      "details": "orderId=INV1837255361-1, token=d312a984-12a4-4414-8..., amount=10000",
+      "critical": false
+    },
+    {
+      "name": "POST /payments/checkout reuses token for same unpaid order",
+      "passed": true,
+      "details": "Same token and orderId returned",
+      "critical": false
+    },
+    {
+      "name": "GET /payments/status/{order_id} returns pending status",
+      "passed": true,
+      "details": "orderId=INV1837255361-1, paymentStatus=pending",
+      "critical": false
+    },
+    {
+      "name": "POST /payments/checkout returns 404 for unknown invoice",
+      "passed": true,
+      "details": "Correct error",
+      "critical": false
+    },
+    {
+      "name": "GET /payments/status/{order_id} returns 404 for unknown order",
+      "passed": true,
+      "details": "Correct error",
+      "critical": false
+    },
+    {
+      "name": "POST /payments/midtrans/notification rejects missing signature",
+      "passed": true,
+      "details": "403 as expected",
+      "critical": false
+    },
+    {
+      "name": "POST /payments/midtrans/notification rejects wrong signature",
+      "passed": true,
+      "details": "403 as expected",
+      "critical": false
+    },
+    {
+      "name": "GET /admin/integrations/midtrans returns masked config",
+      "passed": true,
+      "details": "configured=true, mode=production, serverKey masked, clientKey=Mid-client-R7G7...",
+      "critical": false
+    },
+    {
+      "name": "PUT /admin/integrations/midtrans saves config",
+      "passed": true,
+      "details": "enabled=true saved",
+      "critical": false
+    },
+    {
+      "name": "POST /admin/integrations/midtrans/test returns ok with token sample",
+      "passed": true,
+      "details": "ok=true, tokenSample=c0fa8c6c-1fd..., message=Kredensial Midtrans valid dan siap dipakai.",
+      "critical": false
+    },
+    {
+      "name": "GET /admin/midtrans/transactions returns list",
+      "passed": true,
+      "details": "Found 7 transactions",
+      "critical": false
+    },
+    {
+      "name": "GET /admin/integrations/digiflazz returns status",
+      "passed": true,
+      "details": "configured=False, mode=development, enabled=True",
+      "critical": false
+    },
+    {
+      "name": "PUT /admin/integrations/digiflazz saves credentials",
+      "passed": true,
+      "details": "configured=true, username=test_user, mode=development, hasDevKey=true",
+      "critical": false
+    },
+    {
+      "name": "GET /admin/digiflazz/status returns status",
+      "passed": true,
+      "details": "configured=True, mode=development",
+      "critical": false
+    },
+    {
+      "name": "GET /admin/digiflazz/balance returns clean error for fake creds",
+      "passed": false,
+      "details": "Exception: Expecting value: line 1 column 1 (char 0)",
+      "critical": false
+    },
+    {
+      "name": "RESET Digiflazz config to blank",
+      "passed": true,
+      "details": "configured=false after reset",
+      "critical": false
+    },
+    {
+      "name": "POST /admin/media creates image",
+      "passed": true,
+      "details": "id=med_8cae0b3f258d, url=/api/media/med_8cae0b3f258d",
+      "critical": false
+    },
+    {
+      "name": "GET /media/{id} returns image with correct content-type",
+      "passed": true,
+      "details": "Content-Type: image/png, size: 70 bytes",
+      "critical": false
+    },
+    {
+      "name": "GET /admin/media lists images",
+      "passed": true,
+      "details": "Found 1 images",
+      "critical": false
+    },
+    {
+      "name": "DELETE /admin/media/{id} removes image",
+      "passed": true,
+      "details": "Image deleted",
+      "critical": false
+    },
+    {
+      "name": "POST /admin/media rejects invalid data URL",
+      "passed": true,
+      "details": "400 as expected",
+      "critical": false
+    },
+    {
+      "name": "PUT /admin/settings saves branding keys",
+      "passed": true,
+      "details": "All branding keys saved correctly",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/settings exposes branding keys publicly",
+      "passed": true,
+      "details": "Branding keys visible in public catalog",
+      "critical": false
+    },
+    {
+      "name": "Create test order for manual pay gating",
+      "passed": true,
+      "details": "Invoice: INV1837326693",
+      "critical": false
+    },
+    {
+      "name": "POST /orders/{invoice}/pay works when allowManualPay=true",
+      "passed": true,
+      "details": "Order marked as success",
+      "critical": false
+    },
+    {
+      "name": "Set allowManualPay=false via admin settings",
+      "passed": true,
+      "details": "Setting updated",
+      "critical": false
+    },
+    {
+      "name": "POST /orders/{invoice}/pay returns 403 when allowManualPay=false",
+      "passed": true,
+      "details": "Manual pay correctly blocked",
+      "critical": false
+    },
+    {
+      "name": "Set allowManualPay=true (restore)",
+      "passed": true,
+      "details": "Setting restored",
+      "critical": false
+    },
+    {
+      "name": "PUT /admin/games/{slug} saves new fields",
+      "passed": true,
+      "details": "image, banner, description, howTo, notes, fields all saved",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/games/{slug} returns new fields publicly",
+      "passed": true,
+      "details": "description, howTo, fields visible in public catalog",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/games works",
+      "passed": true,
+      "details": "Status 200",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/vouchers works",
+      "passed": true,
+      "details": "Status 200",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/banners works",
+      "passed": true,
+      "details": "Status 200",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/flashsale works",
+      "passed": true,
+      "details": "Status 200",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/specialoffers works",
+      "passed": true,
+      "details": "Status 200",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/payments works",
+      "passed": true,
+      "details": "Status 200",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/settings works",
+      "passed": true,
+      "details": "Status 200",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/sellaccounts works",
+      "passed": true,
+      "details": "Status 200",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/itemskins works",
+      "passed": true,
+      "details": "Status 200",
+      "critical": false
+    },
+    {
+      "name": "GET /catalog/pulsa works",
+      "passed": true,
+      "details": "Status 200",
+      "critical": false
+    },
+    {
+      "name": "POST /auth/register works",
+      "passed": true,
+      "details": "User registered",
+      "critical": false
+    },
+    {
+      "name": "GET /auth/me works",
+      "passed": true,
+      "details": "User info retrieved",
+      "critical": false
+    }
+  ],
+  "critical_failures": []
+}
